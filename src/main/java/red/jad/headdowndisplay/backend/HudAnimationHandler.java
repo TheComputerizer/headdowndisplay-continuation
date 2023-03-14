@@ -1,7 +1,7 @@
 package red.jad.headdowndisplay.backend;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
 import red.jad.headdowndisplay.HDD;
 
 public class HudAnimationHandler {
@@ -17,29 +17,29 @@ public class HudAnimationHandler {
     public static void revealHud(){
         y = HDD.config.getMaxY();
         speed = 0;
-        if(MinecraftClient.getInstance().world != null) lastRevealed = MinecraftClient.getInstance().world.getTime();
+        if(Minecraft.getInstance().level != null) lastRevealed = Minecraft.getInstance().level.getGameTime();
     }
 
     private static float now = 0;
     public static void render(float delta){
-        if(MinecraftClient.getInstance().world != null){
+        if(Minecraft.getInstance().level != null){
             float before = now;
-            now = MinecraftClient.getInstance().world.getTime() + delta;
+            now = Minecraft.getInstance().level.getGameTime() + delta;
             float tdelta = now - before;
 
-            if(MinecraftClient.getInstance().world.getTime() - lastRevealed > HDD.config.getTimeVisible()*20 && y > HDD.config.getMinY()){
+            if(Minecraft.getInstance().level.getGameTime() - lastRevealed > HDD.config.getTimeVisible()*20 && y > HDD.config.getMinY()){
                 speed += HDD.config.getSpeed() * tdelta;
                 y -= speed * tdelta;
             }
         }
     }
 
-    public static void preInject(final MatrixStack matrices){
-        matrices.push();
+    public static void preInject(final PoseStack matrices) {
+        matrices.pushPose();
         matrices.translate(0, HudAnimationHandler.getY(), 0);
     }
 
-    public static void postInject(final MatrixStack matrices){
-        matrices.pop();
+    public static void postInject(final PoseStack matrices) {
+        matrices.popPose();
     }
 }

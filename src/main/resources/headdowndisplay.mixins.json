@@ -2,12 +2,13 @@
   "required": true,
   "minVersion": "0.8",
   "package": "red.jad.headdowndisplay.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
   "client": [
-    "HudConditionMixin$ClientPlayerEntityMixin",
-    "HudConditionMixin$ClientPlayerInteractionManagerMixin",
-    "HudMovementMixin"
+    "GuiMixin",
+    "ItemRendererMixin",
+    "LocalPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

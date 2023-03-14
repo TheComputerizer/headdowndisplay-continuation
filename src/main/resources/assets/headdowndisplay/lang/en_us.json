@@ -3,15 +3,16 @@
   "key.categories.headdowndisplay":                               "Head-down Display",
   "key.headdowndisplay.showhud":                                  "Reveal",
 
+  "text.autoconfig.headdowndisplay.category.default":             "Basic",
   "text.autoconfig.headdowndisplay.option.enabled":               "Enabled",
   "text.autoconfig.headdowndisplay.option.min_y":                 "Minimum Vertical Offset",
   "text.autoconfig.headdowndisplay.option.max_y":                 "Maximum Vertical Offset",
   "text.autoconfig.headdowndisplay.option.speed":                 "Speed",
   "text.autoconfig.headdowndisplay.option.time_visible":          "Time Visible (seconds)",
 
+  "text.autoconfig.headdowndisplay.category.visibility":          "Visibility",
   "text.autoconfig.headdowndisplay.option.reveal":                "Reveal Conditions",
   "text.autoconfig.headdowndisplay.option.reveal.slot":           "Selected Slot Change",
-  "text.autoconfig.headdowndisplay.option.reveal.item":           "Selected Item Change",
   "text.autoconfig.headdowndisplay.option.reveal.status_effects": "Status Effects",
   "text.autoconfig.headdowndisplay.option.reveal.health":         "Health",
   "text.autoconfig.headdowndisplay.option.reveal.hunger":         "Hunger",

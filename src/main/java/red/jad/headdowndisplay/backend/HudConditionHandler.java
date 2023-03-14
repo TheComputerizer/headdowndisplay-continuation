@@ -1,7 +1,6 @@
 package red.jad.headdowndisplay.backend;
 
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.player.LocalPlayer;
 import red.jad.headdowndisplay.HDD;
 import red.jad.headdowndisplay.config.DefaultConfig;
 
@@ -9,22 +8,22 @@ import static red.jad.headdowndisplay.backend.HudAnimationHandler.revealHud;
 
 public class HudConditionHandler {
 
-    private static ItemStack previousStack;
+    private static int previousSelected;
     private static int previousHealth;
     private static int previousHunger;
     private static int previousArmor;
     private static int previousAir;
     private static int previousStatusEffects;
 
-    public static void tick(ClientPlayerEntity player){
-        if(HDD.config.revealItem()){
-            if(player.getMainHandStack() != previousStack) revealHud();
-            previousStack = player.getMainHandStack();
+    public static void tick(LocalPlayer player) {
+        if(HDD.config.revealSlot()){
+            if(player.getInventory().selected != previousSelected) revealHud();
+            previousSelected = player.getInventory().selected;
         }
 
         if(!player.isCreative() && HDD.config.revealStatusEffects()){
-            if(player.getActiveStatusEffects().size() != previousStatusEffects) revealHud();
-            previousStatusEffects = player.getActiveStatusEffects().size();
+            if(player.getActiveEffects().size() != previousStatusEffects) revealHud();
+            previousStatusEffects = player.getActiveEffects().size();
         }
 
         if(!player.isCreative() && HDD.config.revealHealth() != DefaultConfig.Change.never){
@@ -33,18 +32,18 @@ public class HudConditionHandler {
         }
 
         if(!player.isCreative() && HDD.config.revealHunger() != DefaultConfig.Change.never){
-            revealDelta(player.getHungerManager().getFoodLevel(), previousHunger, HDD.config.revealHunger());
-            previousHunger = player.getHungerManager().getFoodLevel();
+            revealDelta(player.getFoodData().getFoodLevel(), previousHunger, HDD.config.revealHunger());
+            previousHunger = player.getFoodData().getFoodLevel();
         }
 
         if(!player.isCreative() && HDD.config.revealArmor() != DefaultConfig.Change.never){
-            revealDelta(player.getArmor(), previousArmor, HDD.config.revealArmor());
-            previousArmor = player.getArmor();
+            revealDelta(player.getArmorValue(), previousArmor, HDD.config.revealArmor());
+            previousArmor = player.getArmorValue();
         }
 
         if(!player.isCreative() && HDD.config.revealAir() != DefaultConfig.Change.never){
-            revealDelta(player.getAir(), previousAir, HDD.config.revealAir());
-            previousAir = player.getAir();
+            revealDelta(player.getAirSupply(), previousAir, HDD.config.revealAir());
+            previousAir = player.getAirSupply();
         }
     }
 

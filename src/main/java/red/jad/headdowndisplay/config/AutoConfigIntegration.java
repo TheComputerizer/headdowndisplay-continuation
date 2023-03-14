@@ -1,8 +1,8 @@
 package red.jad.headdowndisplay.config;
 
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import red.jad.headdowndisplay.HDD;
 
 @Config(name = HDD.MOD_ID)
@@ -22,11 +22,13 @@ public class AutoConfigIntegration extends DefaultConfig implements ConfigData {
     @Override public double getTimeVisible(){ return time_visible; }
 
     @ConfigEntry.Gui.CollapsibleObject
+    @ConfigEntry.Category("visibility")
+    @ConfigEntry.Gui.TransitiveObject
     Reveal reveal = new Reveal();
 
-    private static class Reveal {
+    @Config(name = "options")
+    public static class Reveal {
         public boolean slot = true;
-        public boolean item = false;
         public boolean status_effects = false;
 
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
@@ -54,7 +56,6 @@ public class AutoConfigIntegration extends DefaultConfig implements ConfigData {
 
     }
     @Override public boolean revealSlot(){ return reveal.slot; }
-    @Override public boolean revealItem(){ return reveal.item; }
     @Override public boolean revealStatusEffects(){ return reveal.status_effects; }
     @Override public Change revealHealth(){ return reveal.health; }
     @Override public Change revealHunger(){ return reveal.hunger; }

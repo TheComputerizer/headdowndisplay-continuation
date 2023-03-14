@@ -11,7 +11,6 @@ public class DefaultConfig {
     public double getTimeVisible(){ return 2; }
 
     public boolean revealSlot(){ return true; }
-    public boolean revealItem(){ return false; }
     public boolean revealStatusEffects(){ return false; }
     public Change revealHealth(){ return Change.decrease; }
     public Change revealHunger(){ return Change.never; }

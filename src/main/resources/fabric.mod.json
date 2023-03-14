@@ -3,19 +3,16 @@
   "id": "headdowndisplay",
   "version": "${version}",
 
-  "name": "Head-down Display",
-  "description": "Automatically hides the Head-up Display when not in use.\nCache automatiquement l'affichage tete haute quand inutilise",
-  "authors": ["Jad Chehimi", "strojae"],
+  "name": "Head-down Display Continuation",
+  "description": "Automatically hides the hotbar when not in use.\nCache automatiquement l'affichage tete haute quand inutilise",
+  "authors": ["Jad Chehimi", "strojae", "The_Computerizer"],
   "contact": {
-    "homepage": "https://curseforge.com/mc-mods/headdowndisplay",
-    "sources": "https://github.com/jadc/headdowndisplay",
-    "issues": "https://github.com/jadc/headdowndisplay/issues"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/head-down-display-continuation",
+    "sources": "https://github.com/TheComputerizer/headdowndisplay-continuation",
+    "issues": "https://github.com/TheComputerizer/headdowndisplay-continuation/issues"
   },
-
   "license": "LGPLv3",
   "icon": "assets/headdowndisplay/icon.png",
-
-  "environment": "*",
   "entrypoints": {
     "client": ["red.jad.headdowndisplay.HDD"],
     "modmenu": [ "red.jad.headdowndisplay.config.ModMenuIntegration" ]
@@ -23,7 +20,7 @@
   "mixins": [ "headdowndisplay.mixins.json" ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.14.14",
     "fabric": "*"
   }
 }

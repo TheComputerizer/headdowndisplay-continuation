@@ -1,8 +1,11 @@
 package red.jad.headdowndisplay.backend;
 
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import red.jad.headdowndisplay.HDD;
 import red.jad.headdowndisplay.config.DefaultConfig;
+
+import java.util.Objects;
 
 import static red.jad.headdowndisplay.backend.HudAnimationHandler.revealHud;
 
@@ -10,6 +13,7 @@ public class HudConditionHandler {
 
     private static int previousSelected;
     private static int previousHealth;
+    private static int previousMountHealth;
     private static int previousHunger;
     private static int previousArmor;
     private static int previousAir;
@@ -30,6 +34,13 @@ public class HudConditionHandler {
             revealDelta((int)player.getHealth(), previousHealth, HDD.config.revealHealth());
             previousHealth = (int)player.getHealth();
         }
+
+        if(player.isPassenger() && player.getVehicle() instanceof LivingEntity living && HDD.config.revealMountHealth() != DefaultConfig.Change.never) {
+            revealDelta((int)living.getHealth(), previousMountHealth, HDD.config.revealMountHealth());
+            previousMountHealth = (int)living.getHealth();
+        }
+
+        if(Objects.nonNull(player.jumpableVehicle()) && HDD.config.revealJumpbarChange()) revealHud();
 
         if(!player.isCreative() && HDD.config.revealHunger() != DefaultConfig.Change.never){
             revealDelta(player.getFoodData().getFoodLevel(), previousHunger, HDD.config.revealHunger());

@@ -19,13 +19,15 @@ public abstract class ItemRendererMixin {
     private void translateItem(ItemStack itemStack, ItemTransforms.TransformType transformType, boolean leftHand,
                                   PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay,
                                   BakedModel model, CallbackInfo ci){
-        matrix.pushPose();
-        matrix.translate(0, -1*HudAnimationHandler.getY(), 0);
+        if(itemStack != ItemStack.EMPTY && transformType == ItemTransforms.TransformType.GUI) {
+            matrix.pushPose();
+            matrix.translate(0, -1 * HudAnimationHandler.getY(), 0);
+        }
     }
     @Inject( method = "render", at = @At(value = "RETURN") )
     private void cancelItem(ItemStack itemStack, ItemTransforms.TransformType transformType, boolean leftHand,
                                PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay,
                                BakedModel model, CallbackInfo ci){
-        matrix.popPose();
+        if(itemStack != ItemStack.EMPTY && transformType == ItemTransforms.TransformType.GUI) matrix.popPose();
     }
 }

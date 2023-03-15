@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
-import org.apache.logging.log4j.LogManager;
 import org.lwjgl.glfw.GLFW;
 import red.jad.headdowndisplay.backend.HudAnimationHandler;
 import red.jad.headdowndisplay.config.AutoConfigIntegration;
@@ -41,9 +40,6 @@ public class HDD implements ClientModInitializer {
         });
         if(FabricLoader.getInstance().getModContainer("cloth-config").isPresent())
             config = AutoConfig.register(AutoConfigIntegration.class, GsonConfigSerializer::new).getConfig();
-        else {
-            LogManager.getLogger().error("NO CLOTH!!!");
-            config = new DefaultConfig();
-        }
+        else config = new DefaultConfig();
 	}
 }

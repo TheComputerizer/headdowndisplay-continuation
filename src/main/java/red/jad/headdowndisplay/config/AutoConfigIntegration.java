@@ -21,7 +21,6 @@ public class AutoConfigIntegration extends DefaultConfig implements ConfigData {
     @Override public double getSpeed(){ return speed; }
     @Override public double getTimeVisible(){ return time_visible; }
 
-    @ConfigEntry.Gui.CollapsibleObject
     @ConfigEntry.Category("visibility")
     @ConfigEntry.Gui.TransitiveObject
     Reveal reveal = new Reveal();

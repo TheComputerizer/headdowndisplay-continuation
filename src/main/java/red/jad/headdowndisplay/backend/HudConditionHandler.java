@@ -5,8 +5,6 @@ import net.minecraft.world.entity.LivingEntity;
 import red.jad.headdowndisplay.HDD;
 import red.jad.headdowndisplay.config.DefaultConfig;
 
-import java.util.Objects;
-
 import static red.jad.headdowndisplay.backend.HudAnimationHandler.revealHud;
 
 public class HudConditionHandler {
@@ -40,7 +38,7 @@ public class HudConditionHandler {
             previousMountHealth = (int)living.getHealth();
         }
 
-        if(Objects.nonNull(player.jumpableVehicle()) && HDD.config.revealJumpbarChange()) revealHud();
+        if(player.isPassenger() && player.input.jumping && HDD.config.revealJumpbarChange()) revealHud();
 
         if(!player.isCreative() && HDD.config.revealHunger() != DefaultConfig.Change.never){
             revealDelta(player.getFoodData().getFoodLevel(), previousHunger, HDD.config.revealHunger());

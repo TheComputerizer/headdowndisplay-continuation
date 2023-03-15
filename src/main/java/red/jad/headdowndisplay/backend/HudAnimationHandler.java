@@ -4,13 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import red.jad.headdowndisplay.HDD;
 
+import java.util.Objects;
+
 public class HudAnimationHandler {
 
     private static double y = 0;
     private static double speed = 0;
 
     public static double getY(){
-        return -Math.min(Math.max(y, HDD.config.getMinY()), HDD.config.getMaxY());
+        return -Math.min(Math.max(Objects.isNull(Minecraft.getInstance().screen) ? y : HDD.config.getMaxY(), HDD.config.getMinY()), HDD.config.getMaxY());
     }
 
     private static long lastRevealed;

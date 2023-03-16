@@ -7,19 +7,12 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
-group = 'red.jad.headdowndisplay'
+group = project.maven_group
 
 repositories {
 	maven {
 		name 'ParchmentMC'
 		url = uri('https://maven.parchmentmc.org')
-	}
-	maven {
-		name = 'Modrinth'
-		url = uri('https://api.modrinth.com/maven')
-		content {
-			includeGroup 'maven.modrinth'
-		}
 	}
 	maven {
 		name = 'TerraformersMC'
@@ -39,16 +32,10 @@ dependencies {
 	}
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "maven.modrinth:cloth-config:${project.cloth_config_version}"
+	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 	modApi "me.shedaniel.cloth:basic-math:${project.cloth_math_version}"
-}
-
-processResources {
-	inputs.property "version", project.version
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
+	modApi "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 }
 
 processResources {

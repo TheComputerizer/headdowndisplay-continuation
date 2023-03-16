@@ -26,13 +26,13 @@ repositories {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.layered() {
+	mappings loom.officialMojangMappings() /*loom.layered() {
 		officialMojangMappings()
 		parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_mappings}@zip")
-	}
+	}*/
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
+	//modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 	modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 	modApi "me.shedaniel.cloth:basic-math:${project.cloth_math_version}"
 	modApi "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"

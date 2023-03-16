@@ -1,17 +1,13 @@
 package red.jad.headdowndisplay;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import org.lwjgl.glfw.GLFW;
 import red.jad.headdowndisplay.backend.HudAnimationHandler;
-import red.jad.headdowndisplay.config.AutoConfigIntegration;
 import red.jad.headdowndisplay.config.DefaultConfig;
 
 public class HDD implements ClientModInitializer {
@@ -38,8 +34,9 @@ public class HDD implements ClientModInitializer {
                 HudAnimationHandler.revealHud();
             }
         });
-        if(FabricLoader.getInstance().getModContainer("cloth-config").isPresent())
-            config = AutoConfig.register(AutoConfigIntegration.class, GsonConfigSerializer::new).getConfig();
-        else config = new DefaultConfig();
+        /*if(FabricLoader.getInstance().getModContainer("cloth-config").isPresent())
+            //config = AutoConfig.register(AutoConfigIntegration.class, GsonConfigSerializer::new).getConfig();
+        else*/
+        config = new DefaultConfig();
 	}
 }

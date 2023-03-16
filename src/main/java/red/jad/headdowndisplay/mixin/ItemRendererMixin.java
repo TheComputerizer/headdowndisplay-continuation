@@ -16,6 +16,7 @@ import red.jad.headdowndisplay.backend.HudAnimationHandler;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
 
+    //Items
     @Inject( method = "render", at = @At(value = "HEAD") )
     private void translateItem(ItemStack itemStack, ItemTransforms.TransformType transformType, boolean leftHand,
                                   PoseStack matrix, MultiBufferSource buffer, int combinedLight, int combinedOverlay,
@@ -32,10 +33,10 @@ public abstract class ItemRendererMixin {
         if(itemStack != ItemStack.EMPTY && transformType == ItemTransforms.TransformType.GUI) matrix.popPose();
     }
 
+    //Durability and usage bars
     @ModifyVariable( method = "renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V",
-            at = @At(value = "STORE"))
-    private PoseStack translateItemDecorations(PoseStack matrix) {
-        matrix.translate(0, HudAnimationHandler.getY(), 0);
-        return matrix;
+            at = @At(value = "HEAD"), ordinal = 1, argsOnly = true)
+    private int translateItemBars(int yPosition) {
+        return (int)(yPosition+HudAnimationHandler.getY());
     }
 }
